@@ -16,21 +16,7 @@ public class Transposer {
 //		
 //	}
 //	
-	public static String [] chords = {
-			"a", 
-			"a#", 
-			"b", 
-			"c", 
-			"c#", 
-			"d", 
-			"d#", 
-			"e",
-			"f",
-			"f#",
-			"g",
-			"g#"
-	};
-	 
+
 	public enum Chord {
 		A ("A",		"A",	0),
 		A1("A#",	"BB",	1),
@@ -113,7 +99,7 @@ public class Transposer {
 			value = value + Chord.length();
 		}
 		else if(value > Chord.length-1){
-			value = value%chords.length;
+			value = value%Chord.length();
 		}
 		
 		//add back in relevant information
