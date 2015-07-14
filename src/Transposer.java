@@ -33,17 +33,17 @@ public class Transposer {
 	 
 	public enum Chord {
 		A ("A",		"A",	0),
-		A1("A#",	"Bb",	1),
+		A1("A#",	"BB",	1),
 		B ("B",		"B",	2),
 		C ("C", 	"C",	3),
-		C1("C#",	"Db",	4),
+		C1("C#",	"DB",	4),
 		D ("D", 	"D",	5),
-		D1("D#",	"Eb",	6),
+		D1("D#",	"EB",	6),
 		E ("E",		"E",	7),
 		F("F",		"F",	8),
-		F1("F#",	"Gb",	9),
+		F1("F#",	"GB",	9),
 		G("G",		"G",	10),
-		G1("G#",	"Ab",	11);
+		G1("G#",	"AB",	11);
 		
 		private final String main;
 		private final String alt;
