@@ -2,18 +2,18 @@ import java.util.Scanner;
 
 
 public class Transposer {
-	
-	public static void main (String [] args){
-		Scanner sc = new Scanner(System.in);
-		System.out.print("Please enter a chord to be transposed: ");
-		String toTranspose = sc.nextLine();
-		System.out.print("Please enter the amount to be transposed: ");
-		int amount = sc.nextInt();
-		System.out.print("The transposed chord is: ");
-		System.out.println(trans(toTranspose, amount));
-		
-	}
-	
+//	
+//	public static void main (String [] args){
+//		Scanner sc = new Scanner(System.in);
+//		System.out.print("Please enter a chord to be transposed: ");
+//		String toTranspose = sc.nextLine();
+//		System.out.print("Please enter the amount to be transposed: ");
+//		int amount = sc.nextInt();
+//		System.out.print("The transposed chord is: ");
+//		System.out.println(trans(toTranspose, amount));
+//		
+//	}
+//	
 	public static String [] chords = {
 			"a", 
 			"a#", 
