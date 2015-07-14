@@ -1,3 +1,5 @@
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 
@@ -29,26 +31,45 @@ public class Transposer {
 			"g#"
 	};
 	 
-	public enum Chords {
-		A ("A",		"A"),
-		A1("A#",	"Bb"),
-		B ("B",		"B"),
-		C ("C", 	"C"),
-		C1("C#",	"Db"),
-		D ("D", 	"D"),
-		D1("D#",	"Eb"),
-		E ("E",		"E"),
-		F("F",		"F"),
-		F1("F#",	"Gb"),
-		G("G",		"G"),
-		G1("G#",	"Ab");
+	public enum Chord {
+		A ("A",		"A",	0),
+		A1("A#",	"Bb",	1),
+		B ("B",		"B",	2),
+		C ("C", 	"C",	3),
+		C1("C#",	"Db",	4),
+		D ("D", 	"D",	5),
+		D1("D#",	"Eb",	6),
+		E ("E",		"E",	7),
+		F("F",		"F",	8),
+		F1("F#",	"Gb",	9),
+		G("G",		"G",	10),
+		G1("G#",	"Ab",	11);
 		
 		private final String main;
 		private final String alt;
+		private final int value;
+		private final static int length = 12;
+		
+		private static final Map<Integer, Chord> lookup = new HashMap<Integer, Chord>();
+
+	    static {
+	        for (Chord c : Chord.values()) {
+	            lookup.put(c.value(), c);
+	        }
+	    }
 	
-		private Chords(String main, String alt){
+		private Chord(String main, String alt, int value){
 			this.main = main;
 			this.alt = alt;
+			this.value = value;
+		}
+		
+		public int value(){
+			return value;
+		}
+		
+		public static int length(){
+			return length;
 		}
 		
 		public String getMain(){
@@ -58,6 +79,10 @@ public class Transposer {
 		public String getAlt(){
 			return alt;
 		}
+		
+		public static Chord get(int value){
+			return lookup.get(value);
+		}
 	}
 	
 	public static String trans(String toTrans, int amount){
@@ -66,34 +91,34 @@ public class Transposer {
 		//i.e. C#dim, all we need is C#.
 		//TODO
 		
-		toTrans = toTrans.toLowerCase();
+		toTrans = toTrans.toUpperCase();
 		
-		int index = -1;
+		int value = -1;
 		
-		for(int i = 0; i < chords.length; i++){
-			if(chords[i].equals(toTrans)){
-				index = i;
-				break;
-			} 
+		//iterate over enums, compare to main and alt 
+		for(Chord chord: Chord.values()){
+			if(chord.getMain().equals(toTrans) || chord.getAlt().equals(toTrans)){
+				value = chord.value();
+			}
 		}
-		
-		if(index == -1){
+
+		if(value == -1){
 			return "Please enter a valid chord";
 		}
 		
-		index += amount;
+		value += amount;
 		
 		//Deal with potential wrap around
-		if(index < 0){
-			index = index + chords.length;
+		if(value < 0){
+			value = value + Chord.length();
 		}
-		else if(index > chords.length-1){
-			index = index%chords.length;
+		else if(value > Chord.length-1){
+			value = value%chords.length;
 		}
 		
 		//add back in relevant information
 		
-		return chords[index].toUpperCase();
+		return Chord.get(value).main.toUpperCase();
 	}
 
 
