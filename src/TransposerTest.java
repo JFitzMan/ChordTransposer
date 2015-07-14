@@ -28,6 +28,11 @@ public class TransposerTest {
 	 }
 	
 	@Test
+	 public void testASharpNote() {
+	   assertEquals("F#", Transposer.trans("A#", -4));
+	 }
+	
+	@Test
 	 public void testRegularFlatNote() {
 	   assertEquals("E", Transposer.trans("Db", 3));
 	 }

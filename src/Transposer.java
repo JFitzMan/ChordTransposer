@@ -4,18 +4,6 @@ import java.util.Scanner;
 
 
 public class Transposer {
-//	
-//	public static void main (String [] args){
-//		Scanner sc = new Scanner(System.in);
-//		System.out.print("Please enter a chord to be transposed: ");
-//		String toTranspose = sc.nextLine();
-//		System.out.print("Please enter the amount to be transposed: ");
-//		int amount = sc.nextInt();
-//		System.out.print("The transposed chord is: ");
-//		System.out.println(trans(toTranspose, amount));
-//		
-//	}
-//	
 
 	public enum Chord {
 		A ("A",		"A",	0),
@@ -69,7 +57,7 @@ public class Transposer {
 		public static Chord get(int value){
 			return lookup.get(value);
 		}
-	}
+	}//end of enum Chord
 	
 	public static String trans(String toTrans, int amount){
 		
@@ -92,6 +80,7 @@ public class Transposer {
 			return "Please enter a valid chord";
 		}
 		
+		//shift value to represent the new chord
 		value += amount;
 		
 		//Deal with potential wrap around
@@ -102,10 +91,7 @@ public class Transposer {
 			value = value%Chord.length();
 		}
 		
-		//add back in relevant information
-		
+		//the main value is returned
 		return Chord.get(value).main.toUpperCase();
-	}
-
-
-}
+	}//end of method trans
+}//end of class Transposer
