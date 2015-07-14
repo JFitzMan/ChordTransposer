@@ -28,6 +28,37 @@ public class Transposer {
 			"g",
 			"g#"
 	};
+	 
+	public enum Chords {
+		A ("A",		"A"),
+		A1("A#",	"Bb"),
+		B ("B",		"B"),
+		C ("C", 	"C"),
+		C1("C#",	"Db"),
+		D ("D", 	"D"),
+		D1("D#",	"Eb"),
+		E ("E",		"E"),
+		F("F",		"F"),
+		F1("F#",	"Gb"),
+		G("G",		"G"),
+		G1("G#",	"Ab");
+		
+		private final String main;
+		private final String alt;
+	
+		private Chords(String main, String alt){
+			this.main = main;
+			this.alt = alt;
+		}
+		
+		public String getMain(){
+			return main;
+		}
+		
+		public String getAlt(){
+			return alt;
+		}
+	}
 	
 	public static String trans(String toTrans, int amount){
 		
