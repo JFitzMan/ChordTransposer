@@ -51,5 +51,9 @@ public class TransposerTest {
 	 public void testExtraInfo2() {
 	   assertEquals("Gmaj7", Transposer.trans("Amaj7", -2));
 	 }
+	@Test
+	 public void testExtraInfo3() {
+	   assertEquals("Bbmaj7", Transposer.trans("Amaj7", 1));
+	 }
 	
 }

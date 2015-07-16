@@ -62,26 +62,33 @@ public class Transposer {
 	public static String trans(String toTrans, int amount){
 		
 		//format the string to match the enum
-		//toTrans = toTrans.toUpperCase();
-		
+		//Deal with extra info not relevant to the method
 		String chordToFind = "";
 		String endOfChord = "";
 		
+		//Check for single notes
 		if(toTrans.length() > 1){
 			
+			//grab the first letter and capitalize it
 			String firstLetter = toTrans.substring(0,1).toUpperCase();
 			
+			//check to see if the second character is important
 			if(toTrans.charAt(1) == 'b' || toTrans.charAt(1) == '#'){
+				//if it is, grab it and add it to the chord to search for
 				chordToFind = firstLetter + toTrans.substring(1,2);
+				//if there is still more, save that extra info to add in at the end
 				if(toTrans.length() > 2){
 					endOfChord = toTrans.substring(2);
 				}
 			}
+			//runs if the second character is irrelevant
 			else{
+				//saves irrelevant info to be added on at the end
 				endOfChord = toTrans.substring(1);
 				chordToFind = firstLetter;
 			}
 		}
+		//single notes just need to be capitalized
 		else{
 			chordToFind = toTrans.toUpperCase();
 		}
@@ -110,7 +117,8 @@ public class Transposer {
 			value = value%Chord.length();
 		}
 		
-		//the main value is returned
+		//the main value is returned, with the extra info tacked on the end.
 		return Chord.get(value).main + endOfChord;
+		
 	}//end of method trans
 }//end of class Transposer
