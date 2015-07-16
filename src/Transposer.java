@@ -7,17 +7,17 @@ public class Transposer {
 
 	public enum Chord {
 		A ("A",		"A",	0),
-		A1("BB",	"A#",	1),
+		A1("Bb",	"A#",	1),
 		B ("B",		"B",	2),
 		C ("C", 	"C",	3),
-		C1("C#",	"DB",	4),
+		C1("C#",	"Db",	4),
 		D ("D", 	"D",	5),
-		D1("EB",	"D#",	6),
+		D1("Eb",	"D#",	6),
 		E ("E",		"E",	7),
 		F("F",		"F",	8),
-		F1("F#",	"GB",	9),
+		F1("F#",	"Gb",	9),
 		G("G",		"G",	10),
-		G1("AB",	"G#",	11);
+		G1("Ab",	"G#",	11);
 		
 		private final String main;
 		private final String alt;
@@ -61,17 +61,36 @@ public class Transposer {
 	
 	public static String trans(String toTrans, int amount){
 		
-		//Must pull out relevant chord info
-		//i.e. C#dim, all we need is C#.
-		//TODO
+		//format the string to match the enum
+		//toTrans = toTrans.toUpperCase();
 		
-		toTrans = toTrans.toUpperCase();
+		String chordToFind = "";
+		String endOfChord = "";
+		
+		if(toTrans.length() > 1){
+			
+			String firstLetter = toTrans.substring(0,1).toUpperCase();
+			
+			if(toTrans.charAt(1) == 'b' || toTrans.charAt(1) == '#'){
+				chordToFind = firstLetter + toTrans.substring(1,2);
+				if(toTrans.length() > 2){
+					endOfChord = toTrans.substring(2);
+				}
+			}
+			else{
+				endOfChord = toTrans.substring(1);
+				chordToFind = firstLetter;
+			}
+		}
+		else{
+			chordToFind = toTrans.toUpperCase();
+		}
 		
 		int value = -1;
 		
 		//iterate over enums, compare to main and alt 
 		for(Chord chord: Chord.values()){
-			if(chord.getMain().equals(toTrans) || chord.getAlt().equals(toTrans)){
+			if(chord.getMain().equals(chordToFind) || chord.getAlt().equals(chordToFind)){
 				value = chord.value();
 			}
 		}
@@ -92,6 +111,6 @@ public class Transposer {
 		}
 		
 		//the main value is returned
-		return Chord.get(value).main.toUpperCase();
+		return Chord.get(value).main + endOfChord;
 	}//end of method trans
 }//end of class Transposer

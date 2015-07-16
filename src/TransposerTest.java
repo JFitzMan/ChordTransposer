@@ -37,4 +37,19 @@ public class TransposerTest {
 	   assertEquals("E", Transposer.trans("Db", 3));
 	 }
 	
+	@Test
+	 public void testReturnFlat() {
+	   assertEquals("Bb", Transposer.trans("C", -2));
+	 }
+	
+	@Test
+	 public void testExtraInfo1() {
+	   assertEquals("Emin", Transposer.trans("C#min", 3));
+	 }
+	
+	@Test
+	 public void testExtraInfo2() {
+	   assertEquals("Gmaj7", Transposer.trans("Amaj7", -2));
+	 }
+	
 }
